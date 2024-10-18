@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flert</title>
+</head>
+<body>
+
+    <h1>Flert</h1>
+    <p>Input a list of numbers, send messages.</p>
+
+    <p>Phone Numbers. seperated by commas.</p>
+    <textarea name="numbers" id="numbers"></textarea>
+    
+    <p>The message you are sending.</p>
+    <textarea name="message" id="message"></textarea>
+
+    <br>
+    <br>
+    <button id="button">It's blastin time!</button>
+
+    <hr>
+
+    <div id="links">
+        <!-- Links -->
+    </div>
+
+
+    <script>
+        $("#button").on("click", () => {
+            const numbers = $("#numbers").val();
+            const message = $("#message").val();
+            const numArray = numbers.split(",");
+
+            for(let i = 0; i < numArray.length; i++) {
+                let number = numArray[i];
+                let link = $(`<input type="checkbox" /><a href="sms:${number}?&body=${encodeURIComponent(message)}">Send to ${number}</a><br/>`)
+
+                $("#links").append(link);
+            }
+        });
+    </script>
+</body>
+</html>
